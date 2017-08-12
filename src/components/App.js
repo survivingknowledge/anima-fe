@@ -6,13 +6,13 @@ class App extends Component {
       <div className="App container">
         <div className='row'>
           <div className='col-xs-4'>
-            one
+            4/12
           </div>
-          <div className='col-xs-4'>
-            two
+          <div className='col-xs-2'>
+            2/12
           </div>
-          <div className='col-xs-4'>
-            three
+          <div className='col-xs-6'>
+            6/12
           </div>
         </div>
       </div>

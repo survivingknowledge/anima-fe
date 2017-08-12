@@ -8,11 +8,11 @@ html {
   box-sizing: inherit;
 }
 
-$gutter: 15px;
+$gutter: 30px;
 
 .container {
   margin: 0 auto;
-  padding: 0 $gutter;
+  padding: 0 ($gutter / 2);
 
   &:after {
     content: '';
@@ -22,8 +22,8 @@ $gutter: 15px;
 }
 
 .row {
-  margin-left: -$gutter;
-  margin-right: -$gutter;
+  margin-left: -($gutter / 2);
+  margin-right: -($gutter / 2);
 
   &:after {
     content: '';
@@ -35,18 +35,28 @@ $gutter: 15px;
 $column-number: 12;
 $col-slug: col !default;
 
-[class^='col-'] {
-  float: left;
-  padding-left: $gutter;
-  padding-right: $gutter;
-  width: 100%;
+[class^='col'] {
+  position: relative;
+  min-height: 1px;
+  padding-left: ($gutter / 2);
+  padding-right:($gutter / 2);
+  width: auto;
 }
 
-@media (min-width: 768px) {
+$break-points: 576px 768px 992px 1200px 1440px;
+$container-widths: 540px 720px 960px 1140px 1380px;
+
+@media (min-width: 576px) {
   @for $i from 1 through $column-number{
     .#{$col-slug}-xs-#{$i}{
+      float: left;
       width: percentage($i/$column-number);
     }
   }
+}
 
+@each $bp in $break-points {
+  @media (min-width: $bp){
+    .container { width: nth($container-widths, index($break-points, $bp)); }
+  }
 }
