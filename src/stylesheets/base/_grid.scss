@@ -1,0 +1,52 @@
+// Inside /base/_grid.scss
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+$gutter: 15px;
+
+.container {
+  margin: 0 auto;
+  padding: 0 $gutter;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.row {
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+$column-number: 12;
+$col-slug: col !default;
+
+[class^='col-'] {
+  float: left;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  @for $i from 1 through $column-number{
+    .#{$col-slug}-xs-#{$i}{
+      width: percentage($i/$column-number);
+    }
+  }
+
+}
